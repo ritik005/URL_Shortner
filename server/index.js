@@ -1,7 +1,11 @@
-const express = require('express');;
-
+const express = require('express');
+const bodyParser = require('body-parser');
+require('./config/dbconnection');
 const app = express();
 const PORT = process.env.PORT || 8000;
+
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 
 app.listen(PORT, (err) => {
     if(err){
