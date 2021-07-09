@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8000;
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 
+app.use('/api/url', require('./routes/api/url'));
 app.listen(PORT, (err) => {
     if(err){
         console.log(`There is some error while running the server`);
