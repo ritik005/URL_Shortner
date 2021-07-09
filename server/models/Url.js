@@ -24,4 +24,4 @@ const UrlSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Url',UrlSchema);
+module.exports = Url =  mongoose.model('url',UrlSchema);
