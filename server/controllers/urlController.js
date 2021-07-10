@@ -27,4 +27,19 @@ const shortUrl = async (req,res)=> {
     
     
 }
-module.exports = {shortUrl};
+
+const fetchUrl = async (req,res)=> {
+    try{
+       const url = await Url.findOne({urlId : req.params.urlId});
+       if(url){
+          url.clicks++;
+          url.save();
+          return res.redirect(url.originalUrl);
+       }
+       else return res.status(404).json('Not found');
+    } catch(err){
+       return res.status(404).json({message: "Something went wrong"});
+    }
+};
+
+module.exports = {shortUrl,fetchUrl};
