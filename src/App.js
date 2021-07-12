@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+const ENDPOINT = "http://localhost:8000";
+
+const App = ()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="container">
+       <h3>URL SHORTNER</h3>
+       {/* <label for="basic-url" class="form-label">Your vanity URL</label> */}
+       <div class="input-group mb-3">
+         <input type="text" class="form-control" placeholder="Enter URL.." aria-label="Enter URL" aria-describedby="button-addon2" />
+         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+       </div>
+     </div>
   );
-}
+};
 
 export default App;
