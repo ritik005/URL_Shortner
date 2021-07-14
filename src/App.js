@@ -3,18 +3,45 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ENDPOINT = "http://localhost:8000";
+const ENDPOINT = "http://localhost:8000/api/url";
 
 const App = ()=> {
+  const [formData, setformData] = useState({
+    originalUrl :""
+  });
+  const {originalUrl} = formData;
+  const handleChange = (text) => (e) => {
+    setformData({ ...formData, [text]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (originalUrl) {
+      console.log(originalUrl);
+      const res = await axios.post(`${ENDPOINT}/short`, {originalUrl});
+      console.log(res.data.url);
+      
+    } else{
+      toast.error("Please enter the URL");
+    }
+  };
   return (
+    <>
+    <ToastContainer />
     <div className="container">
        <h3>URL SHORTNER</h3>
-       {/* <label for="basic-url" class="form-label">Your vanity URL</label> */}
-       <div class="input-group mb-3">
-         <input type="text" class="form-control" placeholder="Enter URL.." aria-label="Enter URL" aria-describedby="button-addon2" />
-         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+       <form onSubmit={handleSubmit}>
+       <div className="input-group mb-3">
+         <input type="text" 
+          className="form-control" 
+          onChange={handleChange("originalUrl")}
+          value={originalUrl}
+          placeholder="Enter URL.."  
+          />
+         <input type="submit" className="btnSubmit" value="send"/>
        </div>
+       </form>
      </div>
+     </>
   );
 };
 
