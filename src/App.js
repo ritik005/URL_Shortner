@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ENDPOINT = "http://localhost:8000/api/url";
+const ENDPOINT = "https://react-url-short.herokuapp.com";
 
 const App = ()=> {
   const [formData, setformData] = useState({
@@ -17,7 +17,7 @@ const App = ()=> {
     e.preventDefault();
     if (originalUrl) {
       console.log(originalUrl);
-      const res = await axios.post(`${ENDPOINT}/short`, {originalUrl});
+      const res = await axios.post(`${ENDPOINT}/api/url/short`, {originalUrl});
       console.log(res.data.url);
       
     } else{
